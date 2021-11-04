@@ -1,5 +1,6 @@
 package com.alibaba.easyexcel.test.demo.web;
 
+import com.alibaba.easyexcel.test.demo.handler.CustomCellWriteStrategy;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -53,8 +54,9 @@ public class WebTest {
         ArrayList<String> sublist = new ArrayList<String>();
         sublist.add("t1");
         sublist.add("t2");
+        sublist.add("t3");
         list.add(sublist);
-        EasyExcel.write(response.getOutputStream()).sheet("模板").doWrite(list);
+        EasyExcel.write(response.getOutputStream(),DownloadData.class).registerWriteHandler(new CustomCellWriteStrategy()).sheet("模板").doWrite(list);
     }
 
     /**
